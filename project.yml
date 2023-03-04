@@ -1,10 +1,3 @@
-attributes:
-  BuildIndependentTargetsInParallel: '1'
-  LastSwiftUpdateCheck: '1420'
-  LastUpgradeCheck: '1420'
-configs:
-  Debug: debug
-  Release: release
 name: MessageAppMVVM
 options:
   defaultConfig: Release
@@ -74,6 +67,9 @@ targets:
     - name: MessageAppMVVM
       path: MessageAppMVVM
     type: application
+    prebuildScripts:
+      - path: ./Scripts/swiftgen.sh
+        name: Generate Resources With Swiftgen
   MessageAppMVVMTests:
     dependencies:
     - target: MessageAppMVVM
