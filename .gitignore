@@ -86,3 +86,6 @@ fastlane/test_output
 *.xcodeproj/*
 
 # End of https://www.toptal.com/developers/gitignore/api/xcode,swift
+
+# Firebase
+GoogleService-Info.plist
