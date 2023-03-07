@@ -4,6 +4,6 @@ clean: true
 output: Docs
 author: hide0101
 module: MessageAppMVVM
-exclude: [Hamic/Resources/*]
+exclude: [MessageAppMVVM/Resources/*]
 skip_undocumented: false
 xcodebuild_arguments: [-scheme,MessageAppMVVM]
