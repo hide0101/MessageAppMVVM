@@ -8,6 +8,7 @@ settings:
     OTHER_LDFLAGS:
       - $(inherited)
       - -ObjC
+    DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
   configs:
     Debug:
       CLANG_CXX_LANGUAGE_STANDARD: gnu++20
