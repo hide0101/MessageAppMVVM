@@ -4,6 +4,11 @@ options:
   groupSortPosition: bottom
   transitivelyLinkDependencies: false
 settings:
+  base:
+    OTHER_LDFLAGS:
+      - $(inherited)
+      - -ObjC
+    DEBUG_INFORMATION_FORMAT: dwarf-with-dsym
   configs:
     Debug:
       CLANG_CXX_LANGUAGE_STANDARD: gnu++20
@@ -20,6 +25,10 @@ settings:
       SDKROOT: iphoneos
       SWIFT_COMPILATION_MODE: wholemodule
       SWIFT_OPTIMIZATION_LEVEL: -O
+packages:
+  Firebase:
+    url: https://github.com/firebase/firebase-ios-sdk
+    exactVersion: 10.6.0
 targets:
   MessageAppMVVM:
     platform: iOS
@@ -70,6 +79,25 @@ targets:
     prebuildScripts:
       - path: ./Scripts/swiftgen.sh
         name: Generate Resources With Swiftgen
+    postBuildScripts:
+      - script: ${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run
+        name: Crashlytics run
+        inputFiles:
+          - ${DWARF_DSYM_FOLDER_PATH}/${DWARF_DSYM_FILE_NAME}/Contents/Resources/DWARF/${TARGET_NAME}
+          - $(SRCROOT)/$(BUILT_PRODUCTS_DIR)/$(INFOPLIST_PATH)
+    dependencies:
+      - package: Firebase
+        product: FirebaseAuth
+      - package: Firebase
+        product: FirebaseFirestore
+      - package: Firebase
+        product: FirebaseAnalytics
+      - package: Firebase
+        product: FirebaseMessaging
+      - package: Firebase
+        product: FirebaseStorage
+      - package: Firebase
+        product: FirebaseCrashlytics
   MessageAppMVVMTests:
     dependencies:
     - target: MessageAppMVVM
