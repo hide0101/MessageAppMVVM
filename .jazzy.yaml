@@ -1,0 +1,9 @@
+# jazzy --help config で設定項目を確認できる
+min_acl: private
+clean: true
+output: Docs
+author: hide0101
+module: MessageAppMVVM
+exclude: [Hamic/Resources/*]
+skip_undocumented: false
+xcodebuild_arguments: [-scheme,MessageAppMVVM]
