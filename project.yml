@@ -4,6 +4,10 @@ options:
   groupSortPosition: bottom
   transitivelyLinkDependencies: false
 settings:
+  base:
+    OTHER_LDFLAGS:
+      - $(inherited)
+      - -ObjC
   configs:
     Debug:
       CLANG_CXX_LANGUAGE_STANDARD: gnu++20
@@ -74,6 +78,19 @@ targets:
     prebuildScripts:
       - path: ./Scripts/swiftgen.sh
         name: Generate Resources With Swiftgen
+    dependencies:
+      - package: Firebase
+        product: FirebaseAuth
+      - package: Firebase
+        product: FirebaseFirestore
+      - package: Firebase
+        product: FirebaseAnalytics
+      - package: Firebase
+        product: FirebaseMessaging
+      - package: Firebase
+        product: FirebaseStorage
+      - package: Firebase
+        product: FirebaseCrashlytics
   MessageAppMVVMTests:
     dependencies:
     - target: MessageAppMVVM
