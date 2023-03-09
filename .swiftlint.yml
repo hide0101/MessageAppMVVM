@@ -1,0 +1,153 @@
+# ルール: https://realm.github.io/SwiftLint/rule-directory.html
+disabled_rules:
+# 複数のクロージャーの場合でも、trailing closureを利用したいため
+- multiple_closures_with_trailing_closure
+# enumの引数を省略したいため
+- empty_enum_arguments
+unused_import:
+  severity: warning 
+  require_explicit_imports: true
+  allowed_transitive_imports: []
+  always_keep_imports: []
+missing_docs:
+  excludes_extensions: false
+  excludes_inherited_types: false
+  excludes_trivial_init: true
+  warning:
+   - fileprivate
+   - internal
+   - open
+   - private
+   - public
+# defaultルール以外にopt-inから採用するルール
+opt_in_rules:
+  # AnyObjectを使用するように統一したい
+  - anyobject_protocol
+  # sequenceからArrayへの変換はArray(seq)に統一したい
+  - array_init
+  - attributes
+  # closure bodyはあまり行数を長くしたくない
+  - closure_body_length
+  # 同じインデントで統一したほうが可読性が上がるから
+  - closure_end_indentation
+  # スペースを含めるで統一したいから
+  - closure_spacing
+  # 垂直方向に整列するに統一したほうが可読性が上がるから
+  - collection_alignment
+  # 次の行でreturnすべきと選択肢を限定して可読性を上げたいから
+  - conditional_returns_on_newline
+  # containsを使うに統一して可読性を上げたいから
+  - contains_over_first_not_nil
+  # range(of:) != nil と range(of:) == nilよりもcontainsを優先して使うに統一して可読性を上げたいから
+  - contains_over_range_nil_comparison
+  # 無駄なインスタンス化は回避したいから
+  - convenience_type
+  # 変数に格納して除去をできるようにするのが好ましいから
+  - discarded_notification_center_observer
+  # Object Literalよりもinitializersを使っての初期化に統一したいから
+  - discouraged_object_literal
+  # OptionalのCollectionよりも空のCollectionを使用するほうが好ましいから
+  - discouraged_optional_collection
+  # isEmptyメソッドを使うに統一して可読性を上げたいから
+  - empty_collection_literal
+  # Count 0でのチェックではなくisEmptyメソッドを使うに統一して可読性を上げたいから
+  - empty_count
+  # 空の文字列リテラルでのチェックではなくisEmptyメソッドを使うに統一して可読性を上げたいから
+  - empty_string
+  # 空のXCTestメソッドは残しておく必要性はないよね
+  - empty_xctest_method
+  # きちんと書こうアクセス修飾子
+  - explicit_acl
+  # 明示的に値を指定を指定するのが好ましい
+  - explicit_enum_raw_value
+  # 明示的な.init()メソッドは避けるのが好ましい
+  - explicit_init
+  # 適切にextensionにもアクセス修飾子をつけていくスタイル
+  - extension_access_modifier
+  # fallthroughは混乱を招く
+  - fallthrough
+  # 致命的なエラーならメッセージは必ず記述すべき
+  - fatal_error_message
+  # ファイル名に空白はダメゼッタイ
+  - file_name_no_space
+  # 可読性上げるために順序を決めてしまう
+  - file_types_order
+  # .filter { }.firstではなく.first（where :)で統一することにより可読性を上げるんだ
+  - first_where
+  # 引数でデフォルト引数を設定しているやつはパラメーターリストの後ろの方にて宣言しましょう
+  - function_default_parameter_at_end
+  # 暗黙のreturnを活用すべき
+  - implicit_return
+  # 暗黙的にアンラップされるオプショナル型は使用すべきではない
+  - implicitly_unwrapped_optional
+  # 1つのタブまたは設定したスペースの量でコードをインデントすべき
+  - indentation_width
+  # デフォルト引数でseparatorは""と指定してあるのだから明示的に引数で指定する必要はない
+  - joined_default_parameter
+  # .filter { }.lastではなく.last(where:)で統一することにより可読性をあげる
+  - last_where
+  # NS系は基本使わない
+  - legacy_objc_type
+  # type.random(in:)を使う
+  - legacy_random
+  # let と var は他のステートメントと空白行で区切るのが好ましい
+  - let_var_whitespace
+  # 開始した行と同じインデントで閉じるに統一する
+  - literal_expression_end_indentation
+  # 親よりもアクセス修飾子が低いことを意識
+  - lower_acl_than_parent
+  # 面倒くさいけど保守性を意識して宣言は文書化する
+  - missing_docs
+  # 修飾子の順序を意識して可読性をあげる
+  - modifier_order
+  # メソッドchainは同じ行にあるか、行ごとに1つずつにする
+  - multiline_function_chains
+  # 複数行のリテラルは、新しい行にそれを括る大括弧を入れるに統一する
+  - multiline_literal_brackets
+  # 関数とメソッドのパラメータは同じ行に記述するか1行に1つ記述するように統一する
+  - multiline_parameters
+  # 複数行のパラメータは周囲のbracketを改行するように統一する
+  - multiline_parameters_brackets
+  # 演算子を使用するときは、単一の空白で囲む
+  - operator_usage_whitespace
+  # 冗長な型注釈はいらない
+  - redundant_type_annotation
+  # プロトコルに準拠するなら全caseは実装する
+  - required_enum_case
+  # sorted().firstやsorted().lastではなくmin()やmax()を使って読みやすくする
+  - sorted_first_last
+  # importがソートされていたら綺麗
+  - sorted_imports
+  # fileprivateは基本は使わないようにする
+  - strict_fileprivate
+  # switch内のcaseは常に改行する
+  - switch_case_on_newline
+  # 統一されたほうが可読性が上がるので順序を指定する
+  - type_contents_order
+  # weak参照で潜在的なクラッシュ防ぐ
+  - unowned_variable_capture
+  # 形式を統一しておきたい
+  - local_doc_comment
+identifier_name:
+  min_length: # only min_length
+    error: 2 # only error
+  excluded: # excluded via string array
+    - id
+    - URL
+    - x
+    - y
+    - vc
+    - on
+    - r
+    - g
+    - b
+    - e
+    - i
+    - lo
+    - la
+    - c
+    - a
+    - fw
+    - ad
+included: # paths to include during linting. `--path` is ignored if present.
+  - MessageAppMVVM/
