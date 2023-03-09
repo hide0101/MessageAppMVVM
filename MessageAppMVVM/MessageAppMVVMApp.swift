@@ -5,21 +5,26 @@
 //  Created by hideaki komori on 2023/03/03.
 //
 
-import SwiftUI
 import FirebaseCore
+import SwiftUI
 
-class AppDelegate: NSObject, UIApplicationDelegate {
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey : Any]? = nil) -> Bool {
+// swiftlint:disable missing_docs
+internal class AppDelegate: NSObject, UIApplicationDelegate {
+    // swiftlint:disable discouraged_optional_collection
+    internal func application(
+        _ application: UIApplication,
+        didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
+    ) -> Bool {
         FirebaseApp.configure()
         return true
     }
 }
 
 @main
-struct MessageAppMVVMApp: App {
-    @UIApplicationDelegateAdaptor(AppDelegate.self) var delegate
+internal struct MessageAppMVVMApp: App {
+    @UIApplicationDelegateAdaptor(AppDelegate.self) internal var delegate
 
-    var body: some Scene {
+    internal var body: some Scene {
         WindowGroup {
             ContentView()
         }

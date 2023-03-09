@@ -77,6 +77,8 @@ targets:
       path: MessageAppMVVM
     type: application
     prebuildScripts:
+      - path: ./Scripts/swiftlint.sh
+        name: Run Swiftlint
       - path: ./Scripts/swiftgen.sh
         name: Generate Resources With Swiftgen
     postBuildScripts:
