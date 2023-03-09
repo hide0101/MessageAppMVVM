@@ -29,6 +29,9 @@ packages:
   Firebase:
     url: https://github.com/firebase/firebase-ios-sdk
     exactVersion: 10.6.0
+  Swinject:
+    url: https://github.com/Swinject/Swinject
+    exactVersion: 2.8.3
 targets:
   MessageAppMVVM:
     platform: iOS
@@ -100,6 +103,8 @@ targets:
         product: FirebaseStorage
       - package: Firebase
         product: FirebaseCrashlytics
+      - package: Swinject
+        product: Swinject
   MessageAppMVVMTests:
     dependencies:
     - target: MessageAppMVVM
