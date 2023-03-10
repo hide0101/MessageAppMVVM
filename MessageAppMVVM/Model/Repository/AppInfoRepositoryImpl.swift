@@ -18,4 +18,8 @@ internal struct AppInfoRepositoryImpl: AppInfoRepository {
         }
         return version
     }
+    
+    internal init(bundle: Bundle) {
+        self.bundle = bundle
+    }
 }
