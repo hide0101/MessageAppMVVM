@@ -14,11 +14,15 @@ internal class ContainerResolver {
     /// インスタンスが注入済みのコンテナ
     private var injectedContainer = MessageAppMVVMApp.buildContainer()
 
+    private init() {
+    }
+
     /// 指定したタイプのインスタンスをコンテナから解決(取得)する
     /// - Parameters:
     ///   - type: 解決するインスタンスのタイプ
     /// - Returns: 解決されたインスタンス
     internal func resolve<T>(_ type: T.Type) -> T {
+        // swiftlint:disable force_unwrapping
         injectedContainer.resolve(T.self)!
     }
 }
