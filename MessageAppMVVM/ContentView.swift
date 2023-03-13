@@ -9,15 +9,13 @@ import SwiftUI
 
 /// コンテントビュー
 internal struct ContentView: View {
+    /// アプリ情報を管理するRepository
+    @Inject private var appInfoRepository: AppInfoRepository
     // swiftlint:disable missing_docs
     internal var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundColor(.accentColor)
-            Text("Hello, world!")
+            Text(appInfoRepository.appVersion)
         }
-        .padding()
     }
 }
 
