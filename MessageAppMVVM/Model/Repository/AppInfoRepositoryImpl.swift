@@ -9,7 +9,7 @@ import Foundation
 
 /// アプリ情報を管理するRepository
 internal struct AppInfoRepositoryImpl: AppInfoRepository {
-    /// Bundle
+    /// バンドル
     private let bundle: Bundle
     /// アプリバージョン
     internal var appVersion: String {
@@ -18,7 +18,10 @@ internal struct AppInfoRepositoryImpl: AppInfoRepository {
         }
         return version
     }
-    
+
+    /// - イニシャライザ
+    ///
+    /// - Parameter bundle: バンドル
     internal init(bundle: Bundle) {
         self.bundle = bundle
     }
