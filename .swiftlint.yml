@@ -153,3 +153,6 @@ identifier_name:
     - ad
 included: # paths to include during linting. `--path` is ignored if present.
   - MessageAppMVVM/
+excluded:
+  - MessageAppMVVM/Model/Repository/Mock/
+  - MessageAppMVVM/Model/UseCase/Mock/
