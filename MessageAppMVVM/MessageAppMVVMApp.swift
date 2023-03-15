@@ -44,6 +44,10 @@ extension App {
             AppInfoRepositoryImpl(bundle: resolver.resolve(Bundle.self)!)
         }
         .inObjectScope(.container)
+        container.register(FetchAppVersion.self) { _ in
+            FetchAppVersionImpl()
+        }
+        .inObjectScope(.container)
         return container
     }
 }
