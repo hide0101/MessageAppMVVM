@@ -7,7 +7,6 @@
 
 import Foundation
 
-
 /// アプリ情報を管理するRepository
 /// @mockable
 internal protocol AppInfoRepository {
