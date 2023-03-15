@@ -2,7 +2,7 @@
 //  Inject.swift
 //  MessageAppMVVM
 //
-//  Created by hideaki komori on 2023/03/11.
+//  Created by hide0101 on 2023/03/11.
 //
 
 import Foundation

@@ -2,7 +2,7 @@
 //  MessageAppMVVMTests.swift
 //  MessageAppMVVMTests
 //
-//  Created by hideaki komori on 2023/03/03.
+//  Created by hide0101 on 2023/03/03.
 //
 
 import XCTest

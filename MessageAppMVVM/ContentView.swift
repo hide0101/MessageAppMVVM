@@ -2,7 +2,7 @@
 //  ContentView.swift
 //  MessageAppMVVM
 //
-//  Created by hideaki komori on 2023/03/03.
+//  Created by hide0101 on 2023/03/03.
 //
 
 import SwiftUI
