@@ -84,6 +84,8 @@ targets:
         name: Run Swiftlint
       - path: ./Scripts/swiftgen.sh
         name: Generate Resources With Swiftgen
+      - path: ./Scripts/mockolo.sh
+        name: Geneaate Mock With Mockolo
     postBuildScripts:
       - script: ${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run
         name: Crashlytics run
