@@ -7,7 +7,10 @@
 
 import Foundation
 
-// swiftlint:disable missing_docs
+
+/// アプリ情報を管理するRepository
+/// @mockable
 internal protocol AppInfoRepository {
+    /// アプリバージョン
     var appVersion: String { get }
 }
