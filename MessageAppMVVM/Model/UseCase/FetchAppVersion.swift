@@ -8,6 +8,7 @@
 import Foundation
 
 /// アプリのバージョンを取得するUseCase
+/// @mockable
 internal protocol FetchAppVersion {
     /// 実行
     /// - Returns: アプリバージョン
