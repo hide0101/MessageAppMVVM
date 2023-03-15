@@ -9,12 +9,12 @@ import SwiftUI
 
 /// コンテントビュー
 internal struct ContentView: View {
-    /// アプリ情報を管理するRepository
-    @Inject private var appInfoRepository: AppInfoRepository
+    /// アプリ情報を取得するUseCase
+    @Inject private var fetchAppVersion: FetchAppVersion
     // swiftlint:disable missing_docs
     internal var body: some View {
         VStack {
-            Text(appInfoRepository.appVersion)
+            Text(fetchAppVersion.invoke())
         }
     }
 }
