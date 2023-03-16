@@ -23,14 +23,14 @@ internal class AuthRepositoryMock: AuthRepository {
     internal init() { }
 
 
-    internal private(set) var createUserWithEmailCallCount = 0
-    internal var createUserWithEmailHandler: ((String, String) -> (AnyPublisher<Void, Error>))?
-    internal func createUserWithEmail(email: String, password: String) -> AnyPublisher<Void, Error> {
-        createUserWithEmailCallCount += 1
-        if let createUserWithEmailHandler = createUserWithEmailHandler {
-            return createUserWithEmailHandler(email, password)
+    internal private(set) var createUserWithEmailAndPasswordCallCount = 0
+    internal var createUserWithEmailAndPasswordHandler: ((String, String) -> (AnyPublisher<Void, Error>))?
+    internal func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error> {
+        createUserWithEmailAndPasswordCallCount += 1
+        if let createUserWithEmailAndPasswordHandler = createUserWithEmailAndPasswordHandler {
+            return createUserWithEmailAndPasswordHandler(email, password)
         }
-        fatalError("createUserWithEmailHandler returns can't have a default value thus its handler must be set")
+        fatalError("createUserWithEmailAndPasswordHandler returns can't have a default value thus its handler must be set")
     }
 
     internal private(set) var signOutCallCount = 0
