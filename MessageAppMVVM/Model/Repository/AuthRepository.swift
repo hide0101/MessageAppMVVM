@@ -18,4 +18,6 @@ internal protocol AuthRepository {
     /// - Returns:
     ///     ユーザーの作成が成功した場合はVoid, 失敗した場合はエラーを返す
     func createUserWithEmail(email: String, password: String) -> AnyPublisher<Void, Error>
+    /// サインアウトする
+    func signOut() -> AnyPublisher<Void, Error>
 }
