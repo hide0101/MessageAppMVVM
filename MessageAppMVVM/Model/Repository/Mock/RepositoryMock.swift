@@ -32,5 +32,15 @@ internal class AuthRepositoryMock: AuthRepository {
         }
         fatalError("createUserWithEmailHandler returns can't have a default value thus its handler must be set")
     }
+
+    internal private(set) var signOutCallCount = 0
+    internal var signOutHandler: (() -> (AnyPublisher<Void, Error>))?
+    internal func signOut() -> AnyPublisher<Void, Error> {
+        signOutCallCount += 1
+        if let signOutHandler = signOutHandler {
+            return signOutHandler()
+        }
+        fatalError("signOutHandler returns can't have a default value thus its handler must be set")
+    }
 }
 
