@@ -4,6 +4,7 @@
 
 
 
+import Combine
 import Foundation
 
 
@@ -16,5 +17,20 @@ internal class AppInfoRepositoryMock: AppInfoRepository {
 
     internal private(set) var appVersionSetCallCount = 0
     internal var appVersion: String = "" { didSet { appVersionSetCallCount += 1 } }
+}
+
+internal class AuthRepositoryMock: AuthRepository {
+    internal init() { }
+
+
+    internal private(set) var createUserWithEmailCallCount = 0
+    internal var createUserWithEmailHandler: ((String, String) -> (AnyPublisher<Void, Error>))?
+    internal func createUserWithEmail(email: String, password: String) -> AnyPublisher<Void, Error> {
+        createUserWithEmailCallCount += 1
+        if let createUserWithEmailHandler = createUserWithEmailHandler {
+            return createUserWithEmailHandler(email, password)
+        }
+        fatalError("createUserWithEmailHandler returns can't have a default value thus its handler must be set")
+    }
 }
 
