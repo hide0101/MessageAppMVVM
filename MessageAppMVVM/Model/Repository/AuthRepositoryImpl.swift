@@ -11,7 +11,7 @@ import Foundation
 
 // swiftlint:disable missing_docs
 internal struct AuthRepositoryImpl: AuthRepository {
-
+    
     @Inject private var auth: Auth
 
     internal func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error> {
@@ -21,6 +21,19 @@ internal struct AuthRepositoryImpl: AuthRepository {
                     if let error = error {
                         promise(.failure(error))
                         return
+                    }
+                    promise(.success(()))
+                }
+            }
+        }.eraseToAnyPublisher()
+    }
+    
+    internal func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error> {
+        Deferred {
+            Future { promise in
+                auth.signIn(withEmail: email, password: password) { _, error in
+                    if let error = error {
+                        promise(.failure(error))
                     }
                     promise(.success(()))
                 }
