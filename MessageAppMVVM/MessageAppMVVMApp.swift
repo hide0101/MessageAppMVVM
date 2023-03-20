@@ -5,6 +5,7 @@
 //  Created by hide0101 on 2023/03/03.
 //
 
+import FirebaseAuth
 import FirebaseCore
 import SwiftUI
 import Swinject
@@ -48,6 +49,9 @@ extension App {
             FetchAppVersionImpl()
         }
         .inObjectScope(.container)
+        container.register(Auth.self) { _ in
+            Auth.auth()
+        }
         return container
     }
 }
