@@ -6,6 +6,7 @@
 //
 
 import Combine
+import FirebaseAuth
 import Foundation
 
 /// 認証情報を操作するRepository
@@ -16,15 +17,15 @@ internal protocol AuthRepository {
     ///     - email: メールアドレス
     ///     - password: パスワード
     /// - Returns:
-    ///     ユーザーの作成が成功した場合はVoid, 失敗した場合はエラーを返す
-    func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error>
+    ///     ユーザーの作成が成功した場合はAuthDataResult?, 失敗した場合はエラーを返す
+    func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<AuthDataResult?, Error>
     /// メールアドレスでサインインする
     /// - Parameters:
     ///     - email: メールアドレス
     ///     - password: パスワード
     /// - Returns:
-    ///     サインインが成功した場合はVoid, 失敗した場合はエラーを返す
-    func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error>
+    ///     サインインが成功した場合はAuthDataResult?, 失敗した場合はエラーを返す
+    func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<AuthDataResult?, Error>
     /// サインアウトする
     func signOut() -> AnyPublisher<Void, Error>
 }
