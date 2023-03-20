@@ -23,7 +23,6 @@ internal struct AuthRepositoryImpl: AuthRepository {
                 auth.createUser(withEmail: email, password: password) { authDataResult, error in
                     if let error = error {
                         promise(.failure(error))
-                        return
                     }
                     promise(.success(authDataResult))
                 }
