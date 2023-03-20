@@ -5,6 +5,7 @@
 
 
 import Combine
+import FirebaseAuth
 import Foundation
 
 
@@ -24,13 +25,23 @@ internal class AuthRepositoryMock: AuthRepository {
 
 
     internal private(set) var createUserWithEmailAndPasswordCallCount = 0
-    internal var createUserWithEmailAndPasswordHandler: ((String, String) -> (AnyPublisher<Void, Error>))?
-    internal func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<Void, Error> {
+    internal var createUserWithEmailAndPasswordHandler: ((String, String) -> (AnyPublisher<AuthDataResult?, Error>))?
+    internal func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<AuthDataResult?, Error> {
         createUserWithEmailAndPasswordCallCount += 1
         if let createUserWithEmailAndPasswordHandler = createUserWithEmailAndPasswordHandler {
             return createUserWithEmailAndPasswordHandler(email, password)
         }
         fatalError("createUserWithEmailAndPasswordHandler returns can't have a default value thus its handler must be set")
+    }
+
+    internal private(set) var signInWithEmailAndPasswordCallCount = 0
+    internal var signInWithEmailAndPasswordHandler: ((String, String) -> (AnyPublisher<AuthDataResult?, Error>))?
+    internal func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<AuthDataResult?, Error> {
+        signInWithEmailAndPasswordCallCount += 1
+        if let signInWithEmailAndPasswordHandler = signInWithEmailAndPasswordHandler {
+            return signInWithEmailAndPasswordHandler(email, password)
+        }
+        fatalError("signInWithEmailAndPasswordHandler returns can't have a default value thus its handler must be set")
     }
 
     internal private(set) var signOutCallCount = 0
