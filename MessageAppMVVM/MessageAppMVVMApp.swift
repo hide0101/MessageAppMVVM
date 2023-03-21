@@ -54,6 +54,10 @@ extension App {
             Auth.auth()
         }
         .inObjectScope(.container)
+        container.register(Firestore.self) { _ in
+            Firestore.firestore()
+        }
+        .inObjectScope(.container)
         return container
     }
 }
