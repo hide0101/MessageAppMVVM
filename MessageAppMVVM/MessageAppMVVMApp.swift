@@ -9,6 +9,7 @@ import FirebaseAuth
 import FirebaseCore
 import SwiftUI
 import Swinject
+import FirebaseFirestore
 
 // swiftlint:disable missing_docs
 internal class AppDelegate: NSObject, UIApplicationDelegate {
@@ -52,6 +53,7 @@ extension App {
         container.register(Auth.self) { _ in
             Auth.auth()
         }
+        .inObjectScope(.container)
         return container
     }
 }
