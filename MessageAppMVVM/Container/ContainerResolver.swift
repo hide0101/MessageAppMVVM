@@ -6,15 +6,24 @@
 //
 
 import Foundation
+import Swinject
 
 /// ContainerResolver
 internal class ContainerResolver {
     /// ContainerResolverのシングルトンインスタンス
     internal static let shared = ContainerResolver()
-    /// インスタンスが注入済みのコンテナ
-    private var injectedContainer = MessageAppMVVMApp.buildContainer()
+    /// インスタンスが注入済みのコンテナのResolover
+    private var injectedContainerResolver = ContainerResolver.buildContainerResolver()
 
     private init() {
+    }
+
+    internal static func buildContainerResolver() -> Resolver {
+        Assembler([
+            HelperAssembly(),
+            UseCaseAssembly(),
+            RepositoryAssembly()
+        ]).resolver
     }
 
     /// 指定したタイプのインスタンスをコンテナから解決(取得)する
@@ -23,6 +32,6 @@ internal class ContainerResolver {
     /// - Returns: 解決されたインスタンス
     internal func resolve<T>(_ type: T.Type) -> T {
         // swiftlint:disable force_unwrapping
-        injectedContainer.resolve(T.self)!
+        injectedContainerResolver.resolve(T.self)!
     }
 }
