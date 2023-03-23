@@ -11,10 +11,9 @@ import Swinject
 /// Reposiotry関連をContainerに登録するためのクラス
 internal final class RepositoryAssembly: Assembly {
     // swiftlint:disable missing_docs
-    // swiftlint:disable force_unwrapping
     internal func assemble(container: Swinject.Container) {
-        container.register(AppInfoRepository.self) { resolver in
-            AppInfoRepositoryImpl(bundle: resolver.resolve(Bundle.self)!)
+        container.register(AppInfoRepository.self) { _ in
+            AppInfoRepositoryImpl()
         }
         .inObjectScope(.container)
         container.register(AuthRepository.self) { _ in
