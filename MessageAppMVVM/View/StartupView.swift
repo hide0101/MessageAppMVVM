@@ -7,21 +7,30 @@
 
 import SwiftUI
 
+/// スタートアップ画面
 internal struct StartupView: View {
+    /// サインアップ画面の表示状態
+    @State private var signUpIsPresented = false
+    /// body
     internal var body: some View {
-        VStack {
-            Button("サインアップ") {
-                print("サインアップ")
-            }
-            Button("サインイン") {
-                print("サインイン")
+        NavigationStack {
+            VStack {
+                // TODO 文字列リソース化
+                Button("サインアップ") {
+                    signUpIsPresented = true
+                }
+                .navigationDestination(isPresented: $signUpIsPresented) {
+                    SignUpView()
+                }
             }
         }
     }
 }
 
+/// スタートアップ画面のPreviews
 internal struct StartupView_Previews: PreviewProvider {
-    static var previews: some View {
+    /// previews
+    internal static var previews: some View {
         StartupView()
     }
 }
