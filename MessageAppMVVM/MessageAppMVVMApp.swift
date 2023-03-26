@@ -26,7 +26,7 @@ internal struct MessageAppMVVMApp: App {
 
     internal var body: some Scene {
         WindowGroup {
-            ContentView()
+            StartupView()
         }
     }
 }
