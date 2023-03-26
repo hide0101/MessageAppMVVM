@@ -11,6 +11,9 @@ import SwiftUI
 internal struct StartupView: View {
     /// サインアップ画面の表示状態
     @State private var signUpIsPresented = false
+    /// サインイン画面の表示状態
+    @State private var signInIsPresented = false
+
     /// body
     internal var body: some View {
         NavigationStack {
@@ -21,6 +24,12 @@ internal struct StartupView: View {
                 }
                 .navigationDestination(isPresented: $signUpIsPresented) {
                     SignUpView()
+                }
+                Button("サインイン") {
+                    signInIsPresented = true
+                }
+                .navigationDestination(isPresented: $signInIsPresented) {
+                    SignInView()
                 }
             }
         }
