@@ -18,14 +18,13 @@ internal struct StartupView: View {
     internal var body: some View {
         NavigationStack {
             VStack {
-                // TODO 文字列リソース化
-                Button("サインアップ") {
+                Button(L10n.Startup.SignUp.title) {
                     signUpIsPresented = true
                 }
                 .navigationDestination(isPresented: $signUpIsPresented) {
                     SignUpView()
                 }
-                Button("サインイン") {
+                Button(L10n.Startup.SignIn.title) {
                     signInIsPresented = true
                 }
                 .navigationDestination(isPresented: $signInIsPresented) {

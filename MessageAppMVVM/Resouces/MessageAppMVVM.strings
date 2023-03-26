@@ -5,3 +5,12 @@
   Created by hide0101 on 2023/03/04.
   
 */
+"startup.sign_up.title" = "サインアップ";
+"startup.sign_in.title" = "サインイン";
+"sign_up.email.title" = "メールアドレス";
+"sign_up.password.title" = "パスワード";
+"sign_up.user_name.title" = "ユーザー名";
+"sign_up.submit.title" = "サインアップ";
+"sign_in.email.title" = "メールアドレス";
+"sign_in.password.title" = "パスワード";
+"sign_in.submit.title" = "サインイン";

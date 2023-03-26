@@ -16,14 +16,17 @@ internal struct SignInView: View {
     /// body
     internal var body: some View {
         VStack {
+            Text(L10n.SignIn.Email.title)
+                .frame(maxWidth: .infinity, alignment: .leading)
+            TextField("hoge@gmail.com", text: $email)
             Text("ここでエラーを表示する")
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text("パスワード")
+            Text(L10n.SignIn.Password.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             TextField("入力してください", text: $email)
             Text("ここでエラーを表示する")
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("サインイン") {
+            Button(L10n.SignIn.Submit.title) {
                 // TODO 登録メソッドを実行する
                 print("サインインメソッドを実行する")
             }

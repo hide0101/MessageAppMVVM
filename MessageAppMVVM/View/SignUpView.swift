@@ -18,22 +18,22 @@ internal struct SignUpView: View {
     /// body
     internal var body: some View {
         VStack {
-            Text("メールアドレス")
+            Text(L10n.SignUp.Email.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             TextField("hoge@gmail.com", text: $email)
             Text("ここでエラーを表示する")
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text("パスワード")
+            Text(L10n.SignUp.Password.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             TextField("入力してください", text: $email)
             Text("ここでエラーを表示する")
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Text("ユーザー名")
+            Text(L10n.SignUp.UserName.title)
                 .frame(maxWidth: .infinity, alignment: .leading)
             TextField("入力してください", text: $email)
             Text("ここでエラーを表示する")
                 .frame(maxWidth: .infinity, alignment: .leading)
-            Button("登録する") {
+            Button(L10n.SignUp.Submit.title) {
                 // TODO 登録メソッドを実行する
                 print("登録メソッドを実行する")
             }
