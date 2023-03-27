@@ -12,7 +12,8 @@ import Foundation
 internal protocol SignUp {
     /// 実行
     /// - Parameters:
+    ///     - name: ユーザー名
     ///     - email: メールアドレス
     ///     - password: パスワード
-    func execute(email: String, password: String) -> AnyPublisher<ResultData<SignUpStatus>, Never>
+    func execute(name: String, email: String, password: String) -> AnyPublisher<ResultData<SignUpStatus>, Never>
 }

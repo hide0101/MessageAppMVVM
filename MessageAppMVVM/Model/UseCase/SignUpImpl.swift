@@ -14,11 +14,11 @@ internal struct SignUpImpl: SignUp {
     @Inject private var authRepository: AuthRepository
     @Inject private var dbRepository: DBRepository
     
-    func execute(email: String, password: String) -> AnyPublisher<ResultData<SignUpStatus>, Never> {
+    func execute(name: String, email: String, password: String) -> AnyPublisher<ResultData<SignUpStatus>, Never> {
         authRepository.createUserWithEmailAndPassword(email: email, password: password)
             .flatMap { result -> AnyPublisher<Void, Error> in
                 if let result = result {
-                    return dbRepository.createUser(uid: result.user.uid, name: "hoge")
+                    return dbRepository.createUser(uid: result.user.uid, name: name)
                 }
                 return Fail(error: NSError(domain: "An unexpected error has occurred.", code: -1, userInfo: nil)).eraseToAnyPublisher()
             }
