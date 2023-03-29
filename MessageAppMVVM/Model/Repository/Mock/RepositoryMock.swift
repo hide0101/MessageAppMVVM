@@ -25,8 +25,8 @@ internal class AuthRepositoryMock: AuthRepository {
 
 
     internal private(set) var createUserWithEmailAndPasswordCallCount = 0
-    internal var createUserWithEmailAndPasswordHandler: ((String, String) -> (AnyPublisher<AuthDataResult?, Error>))?
-    internal func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<AuthDataResult?, Error> {
+    internal var createUserWithEmailAndPasswordHandler: ((String, String) -> (AnyPublisher<AuthDataResult?, AuthError>))?
+    internal func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<AuthDataResult?, AuthError> {
         createUserWithEmailAndPasswordCallCount += 1
         if let createUserWithEmailAndPasswordHandler = createUserWithEmailAndPasswordHandler {
             return createUserWithEmailAndPasswordHandler(email, password)
