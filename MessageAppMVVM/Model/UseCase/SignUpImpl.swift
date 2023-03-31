@@ -14,7 +14,7 @@ internal struct SignUpImpl: SignUp {
     @Inject private var authRepository: AuthRepository
     @Inject private var dbRepository: DBRepository
     
-    func execute(name: String, email: String, password: String) -> AnyPublisher<ResultData<SignUpStatus>, Never> {
+    internal func execute(name: String, email: String, password: String) -> AnyPublisher<ResultData<SignUpStatus>, Never> {
         authRepository.createUserWithEmailAndPassword(email: email, password: password)
             .mapError { $0 as Error }
             .flatMap { result -> AnyPublisher<Void, Error> in
