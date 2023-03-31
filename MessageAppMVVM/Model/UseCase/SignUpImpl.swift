@@ -7,8 +7,8 @@
 
 import Combine
 import Foundation
-import FirebaseAuth
 import FirebaseFirestore
+import FirebaseAuth
 
 internal struct SignUpImpl: SignUp {
     @Inject private var authRepository: AuthRepository
@@ -21,7 +21,7 @@ internal struct SignUpImpl: SignUp {
                 if let result = result {
                     return dbRepository.createUser(uid: result.user.uid, name: name)
                 }
-                return Fail(error: NSError(domain: "An unexpected error has occurred.", code: -1, userInfo: nil)).eraseToAnyPublisher()
+                return Fail(error: AuthError.unexpected).eraseToAnyPublisher()
             }
             .map { result -> ResultData<SignUpStatus> in
                 return ResultData(status: SignUpStatus.success)
