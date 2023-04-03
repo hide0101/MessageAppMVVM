@@ -6,11 +6,12 @@
 //
 
 import Combine
-import Foundation
-import FirebaseFirestore
 import FirebaseAuth
+import FirebaseFirestore
+import Foundation
 
 internal struct SignUpImpl: SignUp {
+    
     @Inject private var authRepository: AuthRepository
     @Inject private var dbRepository: DBRepository
     
@@ -27,6 +28,24 @@ internal struct SignUpImpl: SignUp {
                 return ResultData(status: SignUpStatus.success)
             }
             .catch({ error -> AnyPublisher<ResultData<SignUpStatus>, Never> in
+                // TODO 1 handle Error
+                switch error  {
+                case let error as AuthError:
+                    if case .invalidEmail = error {
+                        return Just(ResultData(status: SignUpStatus.emailAlReadyInUse)).eraseToAnyPublisher()
+                    }
+                    if case .emailAlreadyInUse = error {
+                        return Just(ResultData(status: SignUpStatus.weakPassword)).eraseToAnyPublisher()
+                    }
+                    if case .weakPasssword = error {
+                        return Just(ResultData(status: SignUpStatus.weakPassword)).eraseToAnyPublisher()
+                    }
+                    if case .unexpected = error {
+                        return Just(ResultData(status: SignUpStatus.unexpectedError)).eraseToAnyPublisher()
+                    }
+                default:
+                    return Just(ResultData(status: SignUpStatus.networkError)).eraseToAnyPublisher()
+                }
                 return Just(ResultData(status: SignUpStatus.networkError)).eraseToAnyPublisher()
             })
             .eraseToAnyPublisher()
