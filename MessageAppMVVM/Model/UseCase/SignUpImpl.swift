@@ -28,7 +28,6 @@ internal struct SignUpImpl: SignUp {
                 return ResultData(status: SignUpStatus.success)
             }
             .catch({ error -> AnyPublisher<ResultData<SignUpStatus>, Never> in
-                // TODO 1 handle Error
                 switch error  {
                 case let error as AuthError:
                     if case .invalidEmail = error {
