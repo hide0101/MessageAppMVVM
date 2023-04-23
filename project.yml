@@ -125,7 +125,7 @@ targets:
           PRODUCT_BUNDLE_IDENTIFIER: com.hide0101.message.app.mvvm.dev.MessageAppMVVMTests
           SWIFT_EMIT_LOC_STRINGS: 'NO'
           SWIFT_VERSION: '5.0'
-          TEST_HOST: $(BUILT_PRODUCTS_DIR)/MessageAppMVVM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MessageAppMVVM
+          TEST_HOST: $(BUILT_PRODUCTS_DIR)/MessageAppMVVM.app/MessageAppMVVM
         Release:
           ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES: 'YES'
           BUNDLE_LOADER: $(TEST_HOST)
@@ -138,7 +138,7 @@ targets:
           PRODUCT_BUNDLE_IDENTIFIER: com.hide0101.message.app.mvvm.dev.MessageAppMVVMTests
           SWIFT_EMIT_LOC_STRINGS: 'NO'
           SWIFT_VERSION: '5.0'
-          TEST_HOST: $(BUILT_PRODUCTS_DIR)/MessageAppMVVM.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/MessageAppMVVM
+          TEST_HOST: $(BUILT_PRODUCTS_DIR)/MessageAppMVVM.app/MessageAppMVVM
     sources:
     - name: MessageAppMVVMTests
       path: MessageAppMVVMTests
