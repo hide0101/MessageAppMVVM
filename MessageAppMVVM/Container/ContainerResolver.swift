@@ -13,7 +13,7 @@ internal class ContainerResolver {
     /// ContainerResolverのシングルトンインスタンス
     internal static let shared = ContainerResolver()
     /// インスタンスが注入済みのコンテナのResolover
-    private var injectedContainerResolver = ContainerResolver.buildContainerResolver()
+    private var containerResolver = ContainerResolver.buildContainerResolver()
 
     private init() {
     }
@@ -26,12 +26,22 @@ internal class ContainerResolver {
         ]).resolver
     }
 
+    internal static func buildMockContainerResolver() -> Resolver {
+        Assembler([
+            MockRepositoryAssembly()
+        ]).resolver
+    }
+
     /// 指定したタイプのインスタンスをコンテナから解決(取得)する
     /// - Parameters:
     ///   - type: 解決するインスタンスのタイプ
     /// - Returns: 解決されたインスタンス
     internal func resolve<T>(_ type: T.Type) -> T {
         // swiftlint:disable force_unwrapping
-        injectedContainerResolver.resolve(T.self)!
+        containerResolver.resolve(T.self)!
+    }
+
+    internal func setDependencyMockContainer() {
+        self.containerResolver = ContainerResolver.buildMockContainerResolver()
     }
 }
