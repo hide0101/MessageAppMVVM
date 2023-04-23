@@ -17,7 +17,7 @@ internal struct AuthRepositoryImpl: AuthRepository {
     internal func createUserWithEmailAndPassword(
         email: String,
         password: String
-    ) -> AnyPublisher<AuthDataResult?, AuthError> {
+    ) -> AnyPublisher<String, AuthError> {
         Deferred {
             Future { promise in
                 auth.createUser(withEmail: email, password: password) { authDataResult, error in
@@ -33,7 +33,11 @@ internal struct AuthRepositoryImpl: AuthRepository {
                             promise(.failure(AuthError.unexpected))
                         }
                     }
-                    promise(.success(authDataResult))
+                    if let uid = authDataResult?.user.uid {
+                        promise(.success(uid))
+                    } else {
+                        promise(.failure(AuthError.unexpected))
+                    }
                 }
             }
         }.eraseToAnyPublisher()

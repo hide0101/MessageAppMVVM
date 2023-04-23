@@ -30,13 +30,11 @@ internal struct SignUpImpl: SignUp {
     ) -> AnyPublisher<ResultData<SignUpStatus>, Never> {
         authRepository.createUserWithEmailAndPassword(email: email, password: password)
             .mapError { $0 as Error }
-            .flatMap { result -> AnyPublisher<Void, Error> in
-                if let result = result {
-                    return dbRepository.createUser(uid: result.user.uid, name: name)
-                        .mapError { $0 as Error }
-                        .eraseToAnyPublisher()
-                }
-                return Fail(error: AuthError.unexpected).eraseToAnyPublisher()
+            .flatMap { uid -> AnyPublisher<Void, Error> in
+                return dbRepository.createUser(uid: uid, name: name)
+                    .mapError { $0 as Error }
+                    .eraseToAnyPublisher()
+                
             }
             .map { _ -> ResultData<SignUpStatus> in
                 ResultData(status: SignUpStatus.success)

@@ -18,7 +18,7 @@ internal protocol AuthRepository {
     ///     - password: パスワード
     /// - Returns:
     ///     ユーザーの作成が成功した場合はAuthDataResult?, 失敗した場合はエラーを返す
-    func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<AuthDataResult?, AuthError>
+    func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<String, AuthError>
     /// メールアドレスでサインインする
     /// - Parameters:
     ///     - email: メールアドレス
