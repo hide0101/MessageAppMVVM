@@ -17,14 +17,27 @@ internal struct AuthRepositoryImpl: AuthRepository {
     internal func createUserWithEmailAndPassword(
         email: String,
         password: String
-    ) -> AnyPublisher<AuthDataResult?, Error> {
+    ) -> AnyPublisher<String, AuthError> {
         Deferred {
             Future { promise in
                 auth.createUser(withEmail: email, password: password) { authDataResult, error in
-                    if let error = error {
-                        promise(.failure(error))
+                    if let error = error, let errorCode = AuthErrorCode.Code(rawValue: error._code) {
+                        switch errorCode {
+                        case .invalidEmail:
+                            promise(.failure(AuthError.invalidEmail))
+                        case .emailAlreadyInUse:
+                            promise(.failure(AuthError.emailAlreadyInUse))
+                        case .weakPassword:
+                            promise(.failure(AuthError.weakPasssword))
+                        default:
+                            promise(.failure(AuthError.unexpected))
+                        }
                     }
-                    promise(.success(authDataResult))
+                    if let uid = authDataResult?.user.uid {
+                        promise(.success(uid))
+                    } else {
+                        promise(.failure(AuthError.unexpected))
+                    }
                 }
             }
         }.eraseToAnyPublisher()

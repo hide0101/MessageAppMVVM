@@ -20,13 +20,28 @@ internal class AppInfoRepositoryMock: AppInfoRepository {
     internal var appVersion: String = "" { didSet { appVersionSetCallCount += 1 } }
 }
 
+internal class DBRepositoryMock: DBRepository {
+    internal init() { }
+
+
+    internal private(set) var createUserCallCount = 0
+    internal var createUserHandler: ((String, String) -> (AnyPublisher<Void, DBError>))?
+    internal func createUser(uid: String, name: String) -> AnyPublisher<Void, DBError> {
+        createUserCallCount += 1
+        if let createUserHandler = createUserHandler {
+            return createUserHandler(uid, name)
+        }
+        fatalError("createUserHandler returns can't have a default value thus its handler must be set")
+    }
+}
+
 internal class AuthRepositoryMock: AuthRepository {
     internal init() { }
 
 
     internal private(set) var createUserWithEmailAndPasswordCallCount = 0
-    internal var createUserWithEmailAndPasswordHandler: ((String, String) -> (AnyPublisher<AuthDataResult?, Error>))?
-    internal func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<AuthDataResult?, Error> {
+    internal var createUserWithEmailAndPasswordHandler: ((String, String) -> (AnyPublisher<String, AuthError>))?
+    internal func createUserWithEmailAndPassword(email: String, password: String) -> AnyPublisher<String, AuthError> {
         createUserWithEmailAndPasswordCallCount += 1
         if let createUserWithEmailAndPasswordHandler = createUserWithEmailAndPasswordHandler {
             return createUserWithEmailAndPasswordHandler(email, password)
