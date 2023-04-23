@@ -11,15 +11,15 @@ import Foundation
 
 // swiftlint:disable missing_docs
 internal struct DBRepositoryImpl: DBRepository {
-    
     @Inject private var database: Firestore
 
-    internal func createUser(uid: String, name: String) -> AnyPublisher<Void, Error> {
+    internal func createUser(uid: String, name: String) -> AnyPublisher<Void, DBError> {
         Deferred {
-            Future<Void, Error> { promise in
+            Future<Void, DBError> { promise in
                 database.collection("users").document(uid).setData(["name": name]) { error in
-                    if let error = error {
-                        promise(.failure(error))
+                    if error != nil  {
+                        // エラーが発生した場合は一旦識別せず予期せぬエラーを固定で返却する
+                        promise(.failure(DBError.unexpected))
                     }
                     promise(.success(()))
                 }
