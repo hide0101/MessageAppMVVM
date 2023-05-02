@@ -56,12 +56,12 @@ internal struct AuthRepositoryImpl: AuthRepository {
         }.eraseToAnyPublisher()
     }
 
-    internal func signOut() -> AnyPublisher<Void, Error> {
+    internal func signOut() -> AnyPublisher<Void, AuthError> {
         do {
             try auth.signOut()
             return Empty().eraseToAnyPublisher()
         } catch {
-            return Fail(error: error).eraseToAnyPublisher()
+            return Fail(error: AuthError.unexpected).eraseToAnyPublisher()
         }
     }
 }

@@ -27,5 +27,5 @@ internal protocol AuthRepository {
     ///     サインインが成功した場合はAuthDataResult?, 失敗した場合はエラーを返す
     func signInWithEmailAndPassword(email: String, password: String) -> AnyPublisher<AuthDataResult?, Error>
     /// サインアウトする
-    func signOut() -> AnyPublisher<Void, Error>
+    func signOut() -> AnyPublisher<Void, AuthError>
 }
