@@ -60,8 +60,8 @@ internal class AuthRepositoryMock: AuthRepository {
     }
 
     internal private(set) var signOutCallCount = 0
-    internal var signOutHandler: (() -> (AnyPublisher<Void, Error>))?
-    internal func signOut() -> AnyPublisher<Void, Error> {
+    internal var signOutHandler: (() -> (AnyPublisher<Void, AuthError>))?
+    internal func signOut() -> AnyPublisher<Void, AuthError> {
         signOutCallCount += 1
         if let signOutHandler = signOutHandler {
             return signOutHandler()
